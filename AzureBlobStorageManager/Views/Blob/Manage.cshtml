@@ -1,0 +1,48 @@
+﻿@model List<string>
+
+<br />
+<br />
+<div class="border backgroundWhite p-4">
+    <div class="row flex-even">
+        <div class="col-6">
+            <h2 class="text-primary"> Container Name - @Context.Request.Query["containerName"].ToString()</h2>
+        </div>
+        <div class="col-6 flex-right">
+            <a asp-action="AddFile" asp-controller="Blob" asp-route-containerName=@Context.Request.Query["containerName"].ToString() class="btn btn-primary">Upload Blob</a>
+        </div>
+    </div>
+    <br />
+    <div>
+        @if (Model.Count() > 0)
+        {
+            <table class="table table-striped border">
+                <tr class="table-secondary">
+                    <th>
+                        Container Name
+                    </th>
+                    <th></th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <a asp-action="ViewFile" asp-controller="Blob" asp-route-name="@item" asp-route-containerName=@Context.Request.Query["containerName"].ToString()>
+                                @item
+                            </a>
+                        </td>
+                        <td class="flex-right">
+
+                            <a asp-action="DeleteFile" asp-controller="Blob" asp-route-name="@item" asp-route-containerName=@Context.Request.Query["containerName"].ToString() class="btn btn-danger">
+                                Delete
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </table>
+        }
+        else
+        {
+            <p>No Blobs exists...</p>
+        }
+    </div>
+</div>

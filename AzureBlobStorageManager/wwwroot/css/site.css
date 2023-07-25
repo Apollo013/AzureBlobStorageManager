@@ -20,3 +20,17 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.flex-even {
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+}
+
+
+.flex-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+}
