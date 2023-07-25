@@ -38,7 +38,7 @@ namespace AzureBlobStorageManager.Controllers
             var result = await _blobService.UploadBlob(fileName, file, containerName, blob);
 
             if (result)
-                return RedirectToAction("Index", "Container");
+                return RedirectToAction("Manage", "Blob", new { containerName = containerName });
 
             return View();
         }
@@ -53,7 +53,7 @@ namespace AzureBlobStorageManager.Controllers
         public async Task<IActionResult> DeleteFile(string name, string containerName)
         {
             await _blobService.DeleteBlob(name, containerName);
-            return RedirectToAction("Container", "Index");
+            return RedirectToAction("Manage", "Blob", new {containerName = containerName });
         }
     }
 }
